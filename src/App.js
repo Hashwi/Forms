@@ -10,14 +10,13 @@ function App() {
     event.preventDefault()
     console.log(data)
   }
-
- const handleChange= (event) => {
-  setData({
-    ...data,
-    [event.target.name] :event.target.value 
-  })
-      // setData({[event.target.name] :event.target.value })
-  }
+  
+  const handleChange = (event) => {
+    setData({
+      ...data,
+      [event.target.name]: event.target.type === 'checkbox' ? event.target.checked : event.target.value
+    });
+  };
 
   return (
     <div className="App">
@@ -34,7 +33,7 @@ function App() {
               <input type="text" name = "lastName" onChange={handleChange}/>
             </div>
             <div>
-              <input type="checkbox" name ='isOk'/>
+              <input type="checkbox" name ='isOk'onChange={handleChange}/>
             </div>
             <div>
               <button type="submit">Submit</button>
