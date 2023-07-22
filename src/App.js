@@ -1,7 +1,24 @@
+import { useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 
+
 function App() {
+  const [data, setData] = useState()
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    console.log(data)
+  }
+
+ const handleChange= (event) => {
+  setData({
+    ...data,
+    [event.target.name] :event.target.value 
+  })
+      // setData({[event.target.name] :event.target.value })
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -9,9 +26,12 @@ function App() {
 
         <div>
           <h1>Hello World!</h1>
-          <form method="GET">
+          <form onSubmit={handleSubmit}>
             <div>
-              <input type="text" name = "firstName"/>
+              <input type="text" name = "firstName" onChange={handleChange}/>
+            </div>
+            <div>
+              <input type="text" name = "lastName" onChange={handleChange}/>
             </div>
             <div>
               <input type="checkbox" name ='isOk'/>
